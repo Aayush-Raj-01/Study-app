@@ -1,1 +1,85 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
+
+:root {
+  --bg-dark: #121212;
+  --bg-darker: #0a0a0a;
+  --bg-card: #1e1e1e;
+  --text-main: #f0f0f0;
+  --text-muted: #a0a0a0;
+  --primary-green: #00ff88;
+  --primary-green-dim: rgba(0, 255, 136, 0.2);
+  --border-color: #333333;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-main);
+  font-weight: 800;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* React Flow Customizations for Dark Theme */
+.react-flow__node {
+  border-radius: 12px !important;
+  border: 1px solid var(--border-color) !important;
+  background-color: var(--bg-card) !important;
+  color: var(--text-main) !important;
+  font-family: 'Outfit', sans-serif !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3) !important;
+  padding: 15px 20px !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease;
+}
+
+.react-flow__node:hover {
+  border-color: var(--primary-green) !important;
+  box-shadow: 0 0 15px var(--primary-green-dim) !important;
+  transform: translateY(-2px);
+}
+
+.react-flow__edge-path {
+  stroke: var(--primary-green) !important;
+  stroke-width: 3 !important;
+}
+
+.react-flow__controls button {
+  background-color: var(--bg-card) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  fill: var(--text-main) !important;
+}
+
+.react-flow__controls button:hover {
+  background-color: var(--bg-darker) !important;
+}
+
+.react-flow__background {
+  background-color: var(--bg-darker) !important;
+}
