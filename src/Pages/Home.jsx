@@ -1,8 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const navigate = useNavigate();
+  const [history, setHistory] = useState([]);
+
+  useEffect(() => {
+    const saved = localStorage.getItem('study_roadmaps');
+    if (saved) {
+      try {
+        setHistory(JSON.parse(saved).reverse());
+      } catch (e) {
+        console.error("Local storage corrupted", e);
+        localStorage.removeItem('study_roadmaps');
+      }
+    }
+  }, []);
 
   return (
     <div style={styles.container} className="animate-fade-in">
@@ -57,6 +70,26 @@ const Home = () => {
             <p style={styles.featureDesc}>Powered by cutting-edge AI to give you results in seconds.</p>
           </div>
         </div>
+
+        {history.length > 0 && (
+          <div style={{ marginTop: '4rem', width: '100%', maxWidth: '1000px' }}>
+            <h2 style={{ color: 'var(--text-main)', fontSize: '2rem' }}>Your Recent Roadmaps</h2>
+            <div className="history-grid">
+              {history.map((item) => (
+                <div 
+                  key={item.id} 
+                  className="history-card"
+                  onClick={() => navigate(`/roadmap?id=${item.id}`)}
+                >
+                  <h3 className="history-card-title">{item.subject}</h3>
+                  <p className="history-card-date">
+                    {new Date(item.timestamp).toLocaleDateString()} - {new Date(item.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </main>
     </div>
   );
