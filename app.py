@@ -70,7 +70,7 @@ def generate_roadmap():
     try:
         text = None
         # Try gemini-2.5-flash-lite first (fast and highly available), fallback to gemini-2.5-flash
-        for model_name in ['gemini-2.5-flash-lite', 'gemini-2.5-flash']:
+        for model_name in ['gemini-3.5-flash-lite', 'gemini-3.8-flash']:
             try:
                 response = client.models.generate_content(
                     model=model_name,
