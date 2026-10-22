@@ -250,8 +250,8 @@ const AIPage = () => {
             >
               <Controls />
               <MiniMap 
-                nodeStrokeColor={(n) => '#00ff88'}
-                nodeColor={(n) => '#1e1e1e'}
+                nodeStrokeColor={() => '#00ff88'}
+                nodeColor={() => '#1e1e1e'}
               />
               <Background variant="dots" gap={12} size={1} />
             </ReactFlow>
